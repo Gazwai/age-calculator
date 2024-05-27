@@ -86,7 +86,7 @@ function AgeForm({ setResult }: AgeFormProps) {
           className={styles.form__input}
           aria-invalid={errors.day ? 'true' : 'false'}
         >
-          <option value="" />
+          <option value="">DD</option>
           {Array.from({ length: 31 }, (_, i) => (
             <option key={i} value={i + 1}>
               {i + 1}
@@ -114,7 +114,7 @@ function AgeForm({ setResult }: AgeFormProps) {
           className={styles.form__input}
           aria-invalid={errors.month ? 'true' : 'false'}
         >
-          <option value="" />
+          <option value="">MM</option>
           {Array.from({ length: 12 }, (_, i) => (
             <option key={i} value={i + 1}>
               {i + 1}
@@ -142,7 +142,7 @@ function AgeForm({ setResult }: AgeFormProps) {
           className={styles.form__input}
           aria-invalid={errors.year ? 'true' : 'false'}
         >
-          <option value="" />
+          <option value="">YYYY</option>
           {Array.from({ length: 124 }, (_, i) => (
             <option key={i} value={2024 - i}>
               {2024 - i}
