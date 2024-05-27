@@ -1,6 +1,5 @@
 import styles from '../page.module.css';
 import { useForm, SubmitHandler, UseFormSetError } from 'react-hook-form';
-import { useState } from 'react';
 
 type Inputs = {
   day: number;
@@ -18,14 +17,13 @@ type AgeFormProps = {
   setResult: (result: TimeSince | null | undefined) => void;
 };
 
-function calculateDateDifference(
+export const calculateDateDifference = (
   inputDate: string,
   setError: UseFormSetError<Inputs>
-): TimeSince | undefined {
+): TimeSince | undefined => {
   const startDate = new Date(inputDate);
   const endDate = new Date();
 
-  // Ensure the start date is before the end date
   if (startDate > endDate) {
     setError('day', { type: 'custom', message: 'Must be in the past.' });
     setError('month', { type: 'custom', message: '' });
@@ -37,7 +35,6 @@ function calculateDateDifference(
   let months = endDate.getMonth() - startDate.getMonth();
   let days = endDate.getDate() - startDate.getDate();
 
-  // Adjust days and months if needed
   if (days < 0) {
     months--;
     const lastMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 0);
@@ -50,7 +47,7 @@ function calculateDateDifference(
   }
 
   return { years, months, days };
-}
+};
 
 function AgeForm({ setResult }: AgeFormProps) {
   const {
