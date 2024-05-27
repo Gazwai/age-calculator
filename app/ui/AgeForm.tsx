@@ -80,17 +80,19 @@ function AgeForm({ setResult }: AgeFormProps) {
           Day
         </label>
 
-        <input
-          className={styles.form__input}
-          {...register('day', {
-            min: { value: 1, message: 'Must be between 1 - 31' },
-            max: { value: 31, message: 'Must be between 1 - 31' },
-            required: { value: true, message: 'Day is required' },
-          })}
-          aria-invalid={errors.day ? 'true' : 'false'}
+        <select
+          {...register('day', { required: 'Day is required' })}
           id="day"
-          type="number"
-        />
+          className={styles.form__input}
+          aria-invalid={errors.day ? 'true' : 'false'}
+        >
+          <option value="" />
+          {Array.from({ length: 31 }, (_, i) => (
+            <option key={i} value={i + 1}>
+              {i + 1}
+            </option>
+          ))}
+        </select>
 
         <div className={styles.form__input_errors}>
           {errors.day && <span role="alert">{errors.day.message}</span>}
@@ -106,16 +108,19 @@ function AgeForm({ setResult }: AgeFormProps) {
           Month
         </label>
 
-        <input
-          className={styles.form__input}
-          {...register('month', {
-            min: { value: 1, message: 'Must be between 1 - 12' },
-            max: { value: 12, message: 'Must be between 1 - 12' },
-            required: { value: true, message: 'Month is required' },
-          })}
-          aria-invalid={errors.month ? 'true' : 'false'}
+        <select
+          {...register('month', { required: 'Month is required' })}
           id="month"
-        />
+          className={styles.form__input}
+          aria-invalid={errors.month ? 'true' : 'false'}
+        >
+          <option value="" />
+          {Array.from({ length: 12 }, (_, i) => (
+            <option key={i} value={i + 1}>
+              {i + 1}
+            </option>
+          ))}
+        </select>
 
         <div className={styles.form__input_errors}>
           {errors.month && <span role="alert">{errors.month.message}</span>}
@@ -131,17 +136,19 @@ function AgeForm({ setResult }: AgeFormProps) {
           Year
         </label>
 
-        <input
-          className={styles.form__input}
+        <select
+          {...register('year', { required: 'Year is required' })}
           id="year"
-          {...register('year', {
-            min: { value: 0, message: "Must be after JC's sacrifice" },
-            required: { value: true, message: 'Year is required' },
-          })}
+          className={styles.form__input}
           aria-invalid={errors.year ? 'true' : 'false'}
-          name="year"
-          type="number"
-        />
+        >
+          <option value="" />
+          {Array.from({ length: 124 }, (_, i) => (
+            <option key={i} value={2024 - i}>
+              {2024 - i}
+            </option>
+          ))}
+        </select>
 
         <div className={styles.form__input_errors}>
           {errors.year && <span role="alert">{errors.year.message}</span>}
